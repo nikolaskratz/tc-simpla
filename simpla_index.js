@@ -28,8 +28,8 @@ class Box {
 
     update() {
         this.draw()
-        this.x = this.x + this.velocity.x
-        this.y = this.y + this.velocity.y
+        this.x = (this.x + this.velocity.x)
+        this.y = (this.y + this.velocity.y)
 
     }
 }
@@ -47,7 +47,7 @@ class Container {
         c.save()
         c.beginPath()
         c.lineWidth = 10
-        c.strokeRect(this.x, this.y, this.a, this.a)
+        c.strokeRect(this.x, this.y, this.a, this.b)
         c.restore()
     }
 
@@ -55,8 +55,9 @@ class Container {
 
 
 let moving_box = []
-moving_box.push(new Box(20, 20, 100, 100, 'white', {x: 1, y:1}))
-let container = new Container(200,200, 300, 300)
+moving_box.push(new Box(20, 20, 100, 100, 'white', {x: 5, y:5}))
+moving_box.push(new Box(150, 20, 100, 100, 'white', {x: 5, y:5}))
+let container = new Container(canvas.width/2-450, canvas.height/2-200, 900, 400)
 moving_box[0].draw()
 container.draw()
 
@@ -72,20 +73,26 @@ function animate() {
 
     moving_box.forEach((box_element, index) => {
 
-        //check if box is still moving or already found position
-        if(box_element.position_found) {
-            box_element.draw()
+        //check if first element already finished moving
+        if(index == 0 || index>0 && moving_box[index-1].position_found) {
+            //check if box is still moving or already found position
+            if(box_element.position_found) {
+                box_element.draw()
+            } else {
+                box_element.update()
+            }
+            console.log(box_element.x + box_element.a - (container.x + container.a))
+            //check if box hits border of container
+            if(Math.abs(box_element.x + box_element.a - (container.x + container.a)) <=6 ||
+                Math.abs(box_element.y + box_element.b - (container.y + container.b)) <=6) {
+                box_element.position_found=true
+            }
         } else {
-            box_element.update()
+            box_element.draw()
         }
 
-        //check if box is in lower left corner of container
-        // if(box_element.x+box_element.a - container.x + container.a == 0 &&
-        //      box_element.y+box_element.b - container.y + box_element.b == 0) {
-        if(box_element.x+box_element.a - container.x + container.a == 0 ) {
-            box_element.position_found=true
-            console.log('hit')
-        }
+        
+
     })
     
 } 
