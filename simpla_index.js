@@ -6,20 +6,21 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 
 class Box {
-    constructor(x, y, a, b, color, velocity, position_found) {
+    constructor(x, y, a, b, color, velocity, position_found, destination) {
         this.x = x
         this.y = y
         this.a = a
         this.b = b
         this.color = color
         this.velocity = velocity
-        this.position_found = false
+        this.position_found = position_found
+        this.destination = destination
     }
 
     draw() {
         c.save()
         c.beginPath()
-        c.rect(this.x, this.y, this.a, this.a)
+        c.rect(this.x, this.y, this.a, this.b)
         c.fillStyle = this.color
         c.fill()
         c.stroke()
@@ -46,20 +47,54 @@ class Container {
     draw() {
         c.save()
         c.beginPath()
-        c.lineWidth = 10
+        c.lineWidth = 4
         c.strokeRect(this.x, this.y, this.a, this.b)
         c.restore()
     }
 
 }
 
+//container data
+let container_width = 900
+let container_height = 400
+let container_position_x = canvas.width/2 - container_width/2
+let container_position_y = canvas.height/2 - container_height/2
 
+//dummy Box data
+let box_width = 100
+let box_height = 100
+let box_position_x = 20
+let box_position_y = 20
+
+//dummy output from optimization algo (position for each element)
+let element_destinations = 
+    [{x: container_position_x+container_width, y: container_position_y+ container_height}, 
+        {x: container_position_x+container_width-box_width, y: container_position_y+ container_height},
+        {x: container_position_x+container_width-box_width*2, y: container_position_y+ container_height},
+        {x: container_position_x+container_width-box_width*3, y: container_position_y+ container_height}]
+
+//set up elements
 let moving_box = []
-moving_box.push(new Box(20, 20, 100, 100, 'white', {x: 5, y:5}))
-moving_box.push(new Box(150, 20, 100, 100, 'white', {x: 5, y:5}))
-let container = new Container(canvas.width/2-450, canvas.height/2-200, 900, 400)
-moving_box[0].draw()
+moving_box.push(new Box(box_position_x, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[0]))
+moving_box.push(new Box(box_position_x + box_width + 100, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[1]))
+moving_box.push(new Box(box_position_x + box_width + 300, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[2]))
+moving_box.push(new Box(box_position_x + box_width + 500, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[3]))
+//calculate velocity according to final destination
+moving_box.forEach((element, index) => {
+    let x = element.destination.x - (element.x + element.a)
+    let y = element.destination.y - (element.y + element.b)
+    element.velocity.x = x/(x+y)*10
+    element.velocity.y = y/(x+y)*10
+})
+
+//set up container
+let container = new Container(container_position_x, container_position_y, container_width, container_height)
+let target = new Container(canvas.width/2, canvas.height/2, 20, 20)
+
 container.draw()
+target.draw()
+
+console.log('target position: '+target.x+', '+target.y)
 
 let animationID
 function animate() {
@@ -70,6 +105,7 @@ function animate() {
     c.fillStyle = 'rgba(30, 0, 100, 1)'
     c.fillRect(0, 0, canvas.width, canvas. height)
     container.draw() //redraw container after each clearing of canvas
+    target.draw()
 
     moving_box.forEach((box_element, index) => {
 
@@ -81,20 +117,19 @@ function animate() {
             } else {
                 box_element.update()
             }
-            console.log(box_element.x + box_element.a - (container.x + container.a))
-            //check if box hits border of container
-            if(Math.abs(box_element.x + box_element.a - (container.x + container.a)) <=6 ||
-                Math.abs(box_element.y + box_element.b - (container.y + container.b)) <=6) {
-                box_element.position_found=true
-            }
+        
+            //check if box is at target destination (with its lower right corner)
+            if(Math.abs(box_element.x + box_element.a - box_element.destination.x) <=4 ||
+                Math.abs(box_element.y + box_element.b - box_element.destination.y) <=4) {
+                    box_element.position_found = true
+                    console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b)
+                }
         } else {
             box_element.draw()
         }
-
-        
-
     })
     
 } 
 
 animate()
+
