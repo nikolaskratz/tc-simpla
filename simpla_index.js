@@ -27,15 +27,20 @@ class Box {
         c.restore()
     }
 
-    // update() {
-    //     this.draw()
-    //     this.x = (this.x + this.velocity.x)
-    //     this.y = (this.y + this.velocity.y)
-    // }
+    update(movingSpeed, secondsPassed, limit) {
+        let x_movememt = this.velocity.x * (movingSpeed*secondsPassed)
+        let y_movement = this.velocity.y * (movingSpeed*secondsPassed)
 
-    update(movingSpeed, secondsPassed) {
-        this.x += this.velocity.x * (movingSpeed*secondsPassed)
-        this.y += this.velocity.y * (movingSpeed*secondsPassed)
+        //check if x movement is to large to detect exact hit on destination --> reduce speed
+        if(x_movememt > x_movememt*limit || y_movement > y_movement*limit) {
+            this.x += this.velocity.x
+            this.y += this.velocity.y
+            console.log('limit reached')
+        } else {
+            this.x += this.velocity.x * (movingSpeed*secondsPassed)
+            this.y += this.velocity.y * (movingSpeed*secondsPassed)
+        }
+        
         this.draw()
     }
 }
@@ -99,6 +104,63 @@ let container = new Container(container_position_x, container_position_y, contai
 container.draw()
 
 
+
+let secondsPassed = 0
+let oldTimeStamp = 0
+let movingSpeed = 800
+let animationID
+let limit = 2
+
+function animate(timeStamp) {
+    
+    secondsPassed = (timeStamp - oldTimeStamp) / 1000
+    oldTimeStamp = timeStamp
+
+    //clear canvas at begining of each animation frame
+    c.fillStyle = 'rgba(30, 0, 100, 1)'
+    c.fillRect(0, 0, canvas.width, canvas. height)
+    container.draw() //redraw container after each clearing of canvas
+
+    moving_box.forEach((box_element, index) => {
+        //check if first element already finished moving
+        if(box_element.position_found == false && 
+            (index == 0 || index>0 && moving_box[index-1].position_found)) {
+            // console.log(box_element.x+', '+box_element.y)
+            //check if box is still moving or already found position
+            if(box_element.position_found) {
+                box_element.draw()
+            } else {
+                box_element.update(movingSpeed, secondsPassed, limit)
+            }
+        
+            //check if box is close to target desitnation
+            if(box_element.position_found==false && 
+                (Math.abs(box_element.x + box_element.a - box_element.destination.x) <=11 ||
+                 Math.abs(box_element.y + box_element.b - box_element.destination.y) <=11)) {
+                console.log('object :'+index)
+                limit = 0.9
+            } else {
+                limit = 2
+            }
+            //check if box is at target destination (with its lower right corner)
+            if(Math.abs(box_element.x + box_element.a - box_element.destination.x) <=1 ||
+                Math.abs(box_element.y + box_element.b - box_element.destination.y) <=1) {
+                    box_element.position_found = true
+                    limit = 2
+                    // console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b)
+                }
+        } else {
+            box_element.draw()
+        }
+    })
+    animationID = requestAnimationFrame(animate)
+
+} 
+
+animate(0.1)
+
+
+
 // let animationID
 // function animate() {
 
@@ -134,75 +196,3 @@ container.draw()
 // } 
 
 // animate()
-
-let secondsPassed = 0
-let oldTimeStamp = 0
-let movingSpeed = 800
-let animationID
-
-function animate(timeStamp) {
-
-    secondsPassed = (timeStamp - oldTimeStamp) / 1000
-    oldTimeStamp = timeStamp
-
-    //clear canvas at begining of each animation frame
-    c.fillStyle = 'rgba(30, 0, 100, 1)'
-    c.fillRect(0, 0, canvas.width, canvas. height)
-    container.draw() //redraw container after each clearing of canvas
-
-    moving_box.forEach((box_element, index) => {
-        //check if first element already finished moving
-        if(index == 0 || index>0 && moving_box[index-1].position_found) {
-            console.log(box_element.x+', '+box_element.y)
-            //check if box is still moving or already found position
-            if(box_element.position_found) {
-                box_element.draw()
-            } else {
-                box_element.update(movingSpeed, secondsPassed)
-            }
-        
-            //check if box is at target destination (with its lower right corner)
-            // if(Math.abs(box_element.x + box_element.a - box_element.destination.x) <=5 ||
-            //     Math.abs(box_element.y + box_element.b - box_element.destination.y) <=5) {
-            if(Math.abs(box_element.x + box_element.a - box_element.destination.x) <=5) {
-                    box_element.position_found = true
-                    console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b)
-                }
-        } else {
-            box_element.draw()
-        }
-    })
-    animationID = requestAnimationFrame(animate)
-
-} 
-
-let time = new Date().getTime()
-animate(time)
-
-
-function easeInOutQuint (t, b, c, d) {
-    if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
-    return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
-}
-
-function easeLinear (t, b, c, d) {
-    return c * t / d + b;
-}
-
-// function gameLoop(timeStamp) {
-//     // Calculate how much time has passed
-//     secondsPassed = (timeStamp - oldTimeStamp) / 1000;
-//     oldTimeStamp = timeStamp;
-
-//     // Pass the time to the update
-//     update(secondsPassed);
-//     draw();
-
-//     window.requestAnimationFrame(gameLoop);
-// }
-
-// function update(secondsPassed) {
-//     // Use time to calculate new position
-//     rectX += (movingSpeed * secondsPassed);
-//     rectY += (movingSpeed * secondsPassed);
-// }
