@@ -27,15 +27,15 @@ class Box {
         c.restore()
     }
 
-    update(movingSpeed, secondsPassed, limit) {
+    update(movingSpeed, secondsPassed, limit, index) {
         let x_movememt = this.velocity.x * (movingSpeed*secondsPassed)
         let y_movement = this.velocity.y * (movingSpeed*secondsPassed)
 
         //check if x movement is to large to detect exact hit on destination --> reduce speed
-        if(x_movememt > x_movememt*limit || y_movement > y_movement*limit) {
+        if(x_movememt > Math.abs(x_movememt*limit) || y_movement > Math.abs(y_movement*limit)) {
             this.x += this.velocity.x
             this.y += this.velocity.y
-            console.log('limit reached')
+            console.log('limit reached: ' + index+ ', x: '+this.x+', y: '+this.y+', velX: '+this.velocity.x+', velY: '+this.velocity.y)
         } else {
             this.x += this.velocity.x * (movingSpeed*secondsPassed)
             this.y += this.velocity.y * (movingSpeed*secondsPassed)
@@ -81,7 +81,8 @@ let element_destinations =
     [{x: container_position_x+container_width, y: container_position_y+ container_height}, 
         {x: container_position_x+container_width-box_width, y: container_position_y+ container_height},
         {x: container_position_x+container_width-box_width*2, y: container_position_y+ container_height},
-        {x: container_position_x+container_width-box_width*3, y: container_position_y+ container_height}]
+        {x: container_position_x+container_width-box_width*3, y: container_position_y+ container_height},
+        {x: container_position_x+container_width-box_width*4, y: container_position_y+ container_height}]
 
 //set up elements
 let moving_box = []
@@ -89,12 +90,23 @@ moving_box.push(new Box(box_position_x, box_position_y, box_width, box_height, '
 moving_box.push(new Box(box_position_x + box_width + 100, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[1]))
 moving_box.push(new Box(box_position_x + box_width + 300, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[2]))
 moving_box.push(new Box(box_position_x + box_width + 500, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[3]))
+moving_box.push(new Box(box_position_x + box_width + 700, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[4]))
+
 //calculate velocity according to final destination
 moving_box.forEach((element, index) => {
-    let x = element.destination.x - (element.x + element.a)
+
+    //distinguish between elements moving left or right on x axis
+    let x
     let y = element.destination.y - (element.y + element.b)
-    element.velocity.x = x/(x+y)
-    element.velocity.y = y/(x+y)
+    if(element.destination.x > (element.x + element.a)) {
+        x = element.destination.x - (element.x + element.a)
+        element.velocity.x = x/(x+y)
+        element.velocity.y = y/(x+y)
+    } else {
+        x = (-1) * ((element.x + element.a) - element.destination.x)
+        element.velocity.x = x/(Math.abs(x)+y)
+        element.velocity.y = y/(Math.abs(x)+y)
+    }
 })
 
 console.log('target: '+element_destinations[0].x+', '+element_destinations[0].y)
@@ -107,7 +119,7 @@ container.draw()
 
 let secondsPassed = 0
 let oldTimeStamp = 0
-let movingSpeed = 800
+let movingSpeed = 1000
 let animationID
 let limit = 2
 
@@ -124,30 +136,30 @@ function animate(timeStamp) {
     moving_box.forEach((box_element, index) => {
         //check if first element already finished moving
         if(box_element.position_found == false && 
-            (index == 0 || index>0 && moving_box[index-1].position_found)) {
+            (index == 0 || (index>0 && moving_box[index-1].position_found))) {
             // console.log(box_element.x+', '+box_element.y)
             //check if box is still moving or already found position
             if(box_element.position_found) {
                 box_element.draw()
             } else {
-                box_element.update(movingSpeed, secondsPassed, limit)
+                box_element.update(movingSpeed, secondsPassed, limit, index)
             }
         
             //check if box is close to target desitnation
             if(box_element.position_found==false && 
-                (Math.abs(box_element.x + box_element.a - box_element.destination.x) <=11 ||
-                 Math.abs(box_element.y + box_element.b - box_element.destination.y) <=11)) {
-                console.log('object :'+index)
+                (Math.abs(box_element.x + box_element.a - box_element.destination.x) <= (box_element.velocity.x* movingSpeed * secondsPassed)  ||
+                 Math.abs(box_element.y + box_element.b - box_element.destination.y) <= (box_element.velocity.y* movingSpeed * secondsPassed))) {
+                // console.log('object :'+index)
                 limit = 0.9
             } else {
-                limit = 2
+                limit = 5
             }
             //check if box is at target destination (with its lower right corner)
-            if(Math.abs(box_element.x + box_element.a - box_element.destination.x) <=1 ||
-                Math.abs(box_element.y + box_element.b - box_element.destination.y) <=1) {
+            if(Math.abs(box_element.x + box_element.a - box_element.destination.x) <= box_element.velocity.x ||
+                Math.abs(box_element.y + box_element.b - box_element.destination.y) <= box_element.velocity.y) {
                     box_element.position_found = true
-                    limit = 2
-                    // console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b)
+                    limit = 5
+                    console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b)
                 }
         } else {
             box_element.draw()
