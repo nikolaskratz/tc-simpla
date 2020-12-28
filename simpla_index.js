@@ -81,8 +81,8 @@ let element_destinations =
     [{x: container_position_x+container_width, y: container_position_y+ container_height}, 
         {x: container_position_x+container_width-box_width, y: container_position_y+ container_height},
         {x: container_position_x+container_width-box_width*2, y: container_position_y+ container_height},
-        {x: container_position_x+container_width-box_width*3, y: container_position_y+ container_height},
-        {x: container_position_x+container_width-box_width*4, y: container_position_y+ container_height}]
+        {x: container_position_x+container_width-box_width, y: container_position_y+ container_height-box_height},
+        {x: container_position_x+container_width-box_width*2, y: container_position_y+ container_height-box_height}]
 
 //set up elements
 let moving_box = []
@@ -92,7 +92,7 @@ moving_box.push(new Box(box_position_x + box_width + 300, box_position_y, box_wi
 moving_box.push(new Box(box_position_x + box_width + 500, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[3]))
 moving_box.push(new Box(box_position_x + box_width + 700, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[4]))
 
-//calculate velocity according to final destination
+//calculate velocity according to final destination and initially draw elements
 moving_box.forEach((element, index) => {
 
     //distinguish between elements moving left or right on x axis
@@ -107,6 +107,9 @@ moving_box.forEach((element, index) => {
         element.velocity.x = x/(Math.abs(x)+y)
         element.velocity.y = y/(Math.abs(x)+y)
     }
+
+    //initial drawing
+    element.draw()
 })
 
 console.log('target: '+element_destinations[0].x+', '+element_destinations[0].y)
@@ -119,12 +122,13 @@ container.draw()
 
 let secondsPassed = 0
 let oldTimeStamp = 0
-let movingSpeed = 1000
+let movingSpeed = 1500
 let animationID
 let limit = 2
+let animationStart = true
 
 function animate(timeStamp) {
-    
+
     secondsPassed = (timeStamp - oldTimeStamp) / 1000
     oldTimeStamp = timeStamp
 
@@ -159,7 +163,7 @@ function animate(timeStamp) {
                 Math.abs(box_element.y + box_element.b - box_element.destination.y) <= box_element.velocity.y) {
                     box_element.position_found = true
                     limit = 5
-                    console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b)
+                    // console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b)
                 }
         } else {
             box_element.draw()
@@ -169,42 +173,11 @@ function animate(timeStamp) {
 
 } 
 
-animate(0.1)
+// animate(0)
 
+const generateSuggestionBtn = document.querySelector('#generateSuggestionBtn')
 
-
-// let animationID
-// function animate() {
-
-//     animationID = requestAnimationFrame(animate);
-
-//     //clear canvas at begining of each animation frame
-//     c.fillStyle = 'rgba(30, 0, 100, 1)'
-//     c.fillRect(0, 0, canvas.width, canvas. height)
-//     container.draw() //redraw container after each clearing of canvas
-//     target.draw()
-
-//     moving_box.forEach((box_element, index) => {
-
-//         //check if first element already finished moving
-//         if(index == 0 || index>0 && moving_box[index-1].position_found) {
-//             //check if box is still moving or already found position
-//             if(box_element.position_found) {
-//                 box_element.draw()
-//             } else {
-//                 box_element.update()
-//             }
-        
-//             //check if box is at target destination (with its lower right corner)
-//             if(Math.abs(box_element.x + box_element.a - box_element.destination.x) <=4 ||
-//                 Math.abs(box_element.y + box_element.b - box_element.destination.y) <=4) {
-//                     box_element.position_found = true
-//                     console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b)
-//                 }
-//         } else {
-//             box_element.draw()
-//         }
-//     })
-// } 
-
-// animate()
+generateSuggestionBtn.addEventListener('click', () => {
+    oldTimeStamp = window.performance.now()+0.001
+    animate(window.performance.now())
+})
