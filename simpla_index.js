@@ -133,7 +133,7 @@ function animate(timeStamp) {
     oldTimeStamp = timeStamp
 
     //clear canvas at begining of each animation frame
-    c.fillStyle = 'rgba(30, 0, 100, 1)'
+    c.fillStyle = 'rgba(85,145,197, 1)'
     c.fillRect(0, 0, canvas.width, canvas. height)
     container.draw() //redraw container after each clearing of canvas
 
