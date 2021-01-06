@@ -11,7 +11,9 @@
     .logo {
         position: absolute;
         right: 0;
-        top: 0;
+        bottom: 0;
+        margin-right: 30;
+        margin-bottom: 30;
     }
 </style>
 
@@ -27,11 +29,10 @@
     text-decoration: none;
     font-size: 26px;
     margin: 40px 20px;
-    position: fixed;
+    position: absolute;
     bottom: 0;
 }
 </style>
-
 
 <div>
     <button 
@@ -46,6 +47,41 @@
     class="logo"
     src="Simpla_logo.png" width= 200 height=50 />
 </div>
-<canvas></canvas>
+
+<table id="topTable" style="width:100%">
+    <!-- <thead>
+        <tr>
+          <th>A</th>
+        </tr>
+    </thead> -->
+    <tbody>
+        <tr>
+          <td>Package Name</td>
+        </tr>
+        <tr>
+          <td>Dimensions</td>
+        </tr>
+        <tr>
+          <td>Quantity</td>
+        </tr>
+        </tbody>
+  </table>
+
+  <style>
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+        padding: 15px;
+    }
+    th {
+        text-align: left;
+    }
+    table {
+        border-spacing: 5px;
+    }
+</style>
+
+<canvas id="mainCanvas"></canvas>
 
 <script src="./simpla_index.js"></script>

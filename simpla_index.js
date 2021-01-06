@@ -6,7 +6,8 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 
 class Box {
-    constructor(x, y, a, b, color, velocity, position_found, destination) {
+    constructor(name, x, y, a, b, color, velocity, position_found, destination) {
+        this.name = name
         this.x = x
         this.y = y
         this.a = a
@@ -35,7 +36,7 @@ class Box {
         if(x_movememt > Math.abs(x_movememt*limit) || y_movement > Math.abs(y_movement*limit)) {
             this.x += this.velocity.x
             this.y += this.velocity.y
-            console.log('limit reached: ' + index+ ', x: '+this.x+', y: '+this.y+', velX: '+this.velocity.x+', velY: '+this.velocity.y)
+            // console.log('limit reached: ' + index+ ', x: '+this.x+', y: '+this.y+', velX: '+this.velocity.x+', velY: '+this.velocity.y)
         } else {
             this.x += this.velocity.x * (movingSpeed*secondsPassed)
             this.y += this.velocity.y * (movingSpeed*secondsPassed)
@@ -70,49 +71,123 @@ let container_height = 400
 let container_position_x = canvas.width/2 - container_width/2
 let container_position_y = canvas.height/2 - container_height/2
 
-//dummy Box data
-let box_width = 100
-let box_height = 100
-let box_position_x = 20
-let box_position_y = 20
+// let box_width = 100
+// let box_height = 100
+// let box_position_x = 20
+// let box_position_y = 20
+
+// //dummy Box2 data
+// let box_width2 = 130
+// let box_height2 = 130
+// let box_position_x2 = 20
+// let box_position_y2 = 20
 
 //dummy output from optimization algo (position for each element)
-let element_destinations = 
-    [{x: container_position_x+container_width, y: container_position_y+ container_height}, 
-        {x: container_position_x+container_width-box_width, y: container_position_y+ container_height},
-        {x: container_position_x+container_width-box_width*2, y: container_position_y+ container_height},
-        {x: container_position_x+container_width-box_width, y: container_position_y+ container_height-box_height},
-        {x: container_position_x+container_width-box_width*2, y: container_position_y+ container_height-box_height}]
+// let element_destinations = 
+//     [{x: container_position_x+container_width, y: container_position_y+ container_height}, 
+//         {x: container_position_x+container_width-box_width, y: container_position_y+ container_height},
+//         {x: container_position_x+container_width-box_width*2, y: container_position_y+ container_height},
+//         {x: container_position_x+container_width-box_width, y: container_position_y+ container_height-box_height},
+//         {x: container_position_x+container_width-box_width, y: container_position_y+ container_height}]
 
-//set up elements
+// //set up elements
+
+// moving_box.push(new Box('boxA', box_position_x, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[0]))
+// moving_box.push(new Box('boxB', box_position_x + box_width + 100, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[1]))
+// moving_box.push(new Box('boxC', box_position_x + box_width + 300, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[2]))
+// moving_box.push(new Box('boxD', box_position_x + box_width + 500, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[3]))
+// moving_box.push(new Box('boxE', box_position_x + box_width + 700, box_position_y, box_width2, box_height2, 'black', {x: 1, y: 1}, false, element_destinations[4]))
+
+
+
+
+//create elements for dummy boxes
+
 let moving_box = []
-moving_box.push(new Box(box_position_x, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[0]))
-moving_box.push(new Box(box_position_x + box_width + 100, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[1]))
-moving_box.push(new Box(box_position_x + box_width + 300, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[2]))
-moving_box.push(new Box(box_position_x + box_width + 500, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[3]))
-moving_box.push(new Box(box_position_x + box_width + 700, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[4]))
+var amountOfBoxes = 5
+let box_position_y = 20
+var fixedDistanceBetweenElements = 100
+var sumWidth = 0 //only to generate destinationX, remove once output from opt.alg is available
+
+for(var i = 0; i<amountOfBoxes; i++) {
+
+    //create random sizes of boxes
+    let box_width = Math.floor(Math.random()*Math.floor(100)) + 100
+    let box_height = Math.floor(Math.random()*Math.floor(100)) + 100
+    // let box_width = 100
+    // let box_height = 100
+    let boxName = 'box'+i
+    let box_position_x
+    let destination_x
+    let destination_y
+
+    if(i==0){
+        box_position_x = 100 //dummy for width of first column --> needs to be manually set?
+        destination_x = container_position_x+container_width //dummy --> should normally come from optimization algo
+        destination_y = container_position_y+ container_height //dummy --> should normally come from optimization algo
+    } else {
+        box_position_x = moving_box[i-1].x + moving_box[i-1].a + fixedDistanceBetweenElements
+        destination_x = container_position_x+container_width-sumWidth //dummy --> should normally come from optimization algo
+        destination_y = container_position_y+container_height //dummy --> should normally come from optimization algo
+    }
+    sumWidth += box_width
+    
+    let velocity = getVelocity(box_width, box_height, box_position_x, box_position_y, destination_x, destination_y)
+    
+    console.log('xdest: '+destination_x+', ydest: '+destination_y)
+    console.log('x velocity: '+velocity.x+', y velocity:'+velocity.y)
+    moving_box.push(new Box(
+        boxName,
+        box_position_x,
+        box_position_y,
+        box_width,
+        box_height,
+        "#"+((1<<24)*Math.random()|0).toString(16) ,
+        velocity, 
+        false, 
+        {x:destination_x, y:destination_y}))
+    moving_box[i].draw()
+}
 
 //calculate velocity according to final destination and initially draw elements
-moving_box.forEach((element, index) => {
-
+function getVelocity(box_width, box_height, box_position_x, box_position_y, destination_x, destination_y) {
     //distinguish between elements moving left or right on x axis
+    let velocity = {x: 1, y: 1}
     let x
-    let y = element.destination.y - (element.y + element.b)
-    if(element.destination.x > (element.x + element.a)) {
-        x = element.destination.x - (element.x + element.a)
-        element.velocity.x = x/(x+y)
-        element.velocity.y = y/(x+y)
+    let y = destination_y - (box_position_y + box_height)
+    console.log('containerLowerY: '+destination_y+' vs. calcY: '+y)
+    if(destination_x> (box_position_x + box_width)) {
+        x = destination_x - (box_position_x + box_width)
+        velocity.x = x/(x+y)
+        velocity.y = y/(x+y)
     } else {
-        x = (-1) * ((element.x + element.a) - element.destination.x)
-        element.velocity.x = x/(Math.abs(x)+y)
-        element.velocity.y = y/(Math.abs(x)+y)
+        x = (-1) * ((box_position_x + box_width) - destination_x)
+        velocity.x = x/(Math.abs(x)+y)
+        velocity.y = y/(Math.abs(x)+y)
     }
+    return velocity
+}
 
-    //initial drawing
-    element.draw()
-})
+// moving_box.forEach((element, index) => {
 
-console.log('target: '+element_destinations[0].x+', '+element_destinations[0].y)
+//     //distinguish between elements moving left or right on x axis
+//     let x
+//     let y = element.destination.y - (element.y + element.b)
+//     if(element.destination.x > (element.x + element.a)) {
+//         x = element.destination.x - (element.x + element.a)
+//         element.velocity.x = x/(x+y)
+//         element.velocity.y = y/(x+y)
+//     } else {
+//         x = (-1) * ((element.x + element.a) - element.destination.x)
+//         element.velocity.x = x/(Math.abs(x)+y)
+//         element.velocity.y = y/(Math.abs(x)+y)
+//     }
+
+//     //initial drawing
+//     // element.draw()
+// })
+
+// console.log('target: '+element_destinations[0].x+', '+element_destinations[0].y)
 
 //set up container
 let container = new Container(container_position_x, container_position_y, container_width, container_height)
@@ -163,7 +238,8 @@ function animate(timeStamp) {
                 Math.abs(box_element.y + box_element.b - box_element.destination.y) <= box_element.velocity.y) {
                     box_element.position_found = true
                     limit = 5
-                    // console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b)
+                    // console.log('x: '+box_element.x+', y: '+box_element.y+', a: '+box_element.a+', b: '+box_element.b
+                    // +', destX: '+box_element.destination.x+', destY: '+box_element.destination.y)
                 }
         } else {
             box_element.draw()
@@ -181,3 +257,30 @@ generateSuggestionBtn.addEventListener('click', () => {
     oldTimeStamp = window.performance.now()+0.001
     animate(window.performance.now())
 })
+
+
+//----------------------------------------------------------------------------------------
+//Table Stuff
+//----------------------------------------------------------------------------------------
+
+
+moving_box.forEach((element, index) => {
+    addColumn('topTable', element)
+
+})
+
+function addColumn(tblId, element)
+{
+	// var tblHeadObj = document.getElementById(tblId).tHead;
+	// for (var h=0; h<tblHeadObj.rows.length; h++) {
+	// 	var newTH = document.createElement('th');
+	// 	tblHeadObj.rows[h].appendChild(newTH);
+	// 	newTH.innerHTML = '[th] row:' + h + ', cell: ' + (tblHeadObj.rows[h].cells.length - 1)
+	// }
+
+	var tblBodyObj = document.getElementById(tblId).tBodies[0];
+	for (var i=0; i<tblBodyObj.rows.length; i++) {
+		var newCell = tblBodyObj.rows[i].insertCell(-1);
+		newCell.innerHTML = element.name +', ' + i
+	}
+}
