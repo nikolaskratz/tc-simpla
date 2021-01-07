@@ -106,7 +106,8 @@ let container_position_y = canvas.height/2 - container_height/2
 let moving_box = []
 var amountOfBoxes = 5
 let box_position_y = 20
-var fixedDistanceBetweenElements = 100
+let first_box_position = innerWidth/10
+var fixedDistanceBetweenElements = (innerWidth-first_box_position)/amountOfBoxes 
 var sumWidth = 0 //only to generate destinationX, remove once output from opt.alg is available
 
 for(var i = 0; i<amountOfBoxes; i++) {
@@ -122,11 +123,12 @@ for(var i = 0; i<amountOfBoxes; i++) {
     let destination_y
 
     if(i==0){
-        box_position_x = 100 //dummy for width of first column --> needs to be manually set?
+        box_position_x = first_box_position*1.5
         destination_x = container_position_x+container_width //dummy --> should normally come from optimization algo
         destination_y = container_position_y+ container_height //dummy --> should normally come from optimization algo
     } else {
-        box_position_x = moving_box[i-1].x + moving_box[i-1].a + fixedDistanceBetweenElements
+        // box_position_x = moving_box[i-1].x + moving_box[i-1].a + fixedDistanceBetweenElements
+        box_position_x = moving_box[i-1].x + fixedDistanceBetweenElements
         destination_x = container_position_x+container_width-sumWidth //dummy --> should normally come from optimization algo
         destination_y = container_position_y+container_height //dummy --> should normally come from optimization algo
     }
@@ -269,18 +271,27 @@ moving_box.forEach((element, index) => {
 
 })
 
-function addColumn(tblId, element)
-{
-	// var tblHeadObj = document.getElementById(tblId).tHead;
-	// for (var h=0; h<tblHeadObj.rows.length; h++) {
-	// 	var newTH = document.createElement('th');
-	// 	tblHeadObj.rows[h].appendChild(newTH);
-	// 	newTH.innerHTML = '[th] row:' + h + ', cell: ' + (tblHeadObj.rows[h].cells.length - 1)
-	// }
-
-	var tblBodyObj = document.getElementById(tblId).tBodies[0];
+function addColumn(tblId, element) {
+	var tblBodyObj = document.getElementById(tblId).tBodies[0]
 	for (var i=0; i<tblBodyObj.rows.length; i++) {
-		var newCell = tblBodyObj.rows[i].insertCell(-1);
-		newCell.innerHTML = element.name +', ' + i
+        var newCell = tblBodyObj.rows[i].insertCell(-1)
+        // newCell.innerHTML = element.name +', ' + i
+        
+        //set text according to row
+        switch(i) {
+            case 0:
+                //name
+                newCell.innerHTML = element.name
+                break
+            case 1:
+                //dimensions
+                newCell.innerHTML = element.a+'x'+element.b
+                break
+            case 2:
+                //quantity
+                newCell.innerHTML = 1
+                break
+        }
 	}
 }
+
