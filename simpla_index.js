@@ -71,36 +71,6 @@ let container_height = 400
 let container_position_x = canvas.width/2 - container_width/2
 let container_position_y = canvas.height/2 - container_height/2
 
-// let box_width = 100
-// let box_height = 100
-// let box_position_x = 20
-// let box_position_y = 20
-
-// //dummy Box2 data
-// let box_width2 = 130
-// let box_height2 = 130
-// let box_position_x2 = 20
-// let box_position_y2 = 20
-
-//dummy output from optimization algo (position for each element)
-// let element_destinations = 
-//     [{x: container_position_x+container_width, y: container_position_y+ container_height}, 
-//         {x: container_position_x+container_width-box_width, y: container_position_y+ container_height},
-//         {x: container_position_x+container_width-box_width*2, y: container_position_y+ container_height},
-//         {x: container_position_x+container_width-box_width, y: container_position_y+ container_height-box_height},
-//         {x: container_position_x+container_width-box_width, y: container_position_y+ container_height}]
-
-// //set up elements
-
-// moving_box.push(new Box('boxA', box_position_x, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[0]))
-// moving_box.push(new Box('boxB', box_position_x + box_width + 100, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[1]))
-// moving_box.push(new Box('boxC', box_position_x + box_width + 300, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[2]))
-// moving_box.push(new Box('boxD', box_position_x + box_width + 500, box_position_y, box_width, box_height, 'white', {x: 1, y: 1}, false, element_destinations[3]))
-// moving_box.push(new Box('boxE', box_position_x + box_width + 700, box_position_y, box_width2, box_height2, 'black', {x: 1, y: 1}, false, element_destinations[4]))
-
-
-
-
 //create elements for dummy boxes
 
 let moving_box = []
@@ -170,26 +140,6 @@ function getVelocity(box_width, box_height, box_position_x, box_position_y, dest
     return velocity
 }
 
-// moving_box.forEach((element, index) => {
-
-//     //distinguish between elements moving left or right on x axis
-//     let x
-//     let y = element.destination.y - (element.y + element.b)
-//     if(element.destination.x > (element.x + element.a)) {
-//         x = element.destination.x - (element.x + element.a)
-//         element.velocity.x = x/(x+y)
-//         element.velocity.y = y/(x+y)
-//     } else {
-//         x = (-1) * ((element.x + element.a) - element.destination.x)
-//         element.velocity.x = x/(Math.abs(x)+y)
-//         element.velocity.y = y/(Math.abs(x)+y)
-//     }
-
-//     //initial drawing
-//     // element.draw()
-// })
-
-// console.log('target: '+element_destinations[0].x+', '+element_destinations[0].y)
 
 //set up container
 let container = new Container(container_position_x, container_position_y, container_width, container_height)
@@ -210,7 +160,7 @@ function animate(timeStamp) {
     oldTimeStamp = timeStamp
 
     //clear canvas at begining of each animation frame
-    c.fillStyle = 'rgba(85,145,197, 1)'
+    c.fillStyle = '#ccc'
     c.fillRect(0, 0, canvas.width, canvas. height)
     container.draw() //redraw container after each clearing of canvas
 
@@ -260,6 +210,12 @@ generateSuggestionBtn.addEventListener('click', () => {
     animate(window.performance.now())
 })
 
+const ModelButton = document.querySelector('#open3d')
+
+ModelButton.addEventListener('click', () => {
+    window.open("3d_container.html", "_self")
+    console.log('openmodel')
+})
 
 //----------------------------------------------------------------------------------------
 //Table Stuff

@@ -1,51 +1,25 @@
+<head>
+    <title>SIMPLA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="CSS/index.css">
+      
+</head>
+
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-<style>
-    body {
-        margin: 0;
-        background: rgba(85,145,197, 1);
-    }
-</style>
-
-<style>
-    .logo {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        margin-right: 30;
-        margin-bottom: 30;
-    }
-</style>
-
-<style>
-    .button {
-    
-    border: black;
-    border-width: 3px;
-    border-style: solid;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 26px;
-    margin: 40px 20px;
-    position: absolute;
-    bottom: 0;
-}
-</style>
-
 <div>
-    <button 
-    class="button" 
-    id="generateSuggestionBtn"
-    
-    >Generate Loading Suggestion</button> 
+    <button class="button generateSuggestionBtn" id="generateSuggestionBtn">
+        Generate Loading Suggestion</button>
 </div>
 
-<div> 
-    <img 
-    class="logo"
-    src="Simpla_logo.png" width= 200 height=50 />
+<div>
+    <button class="button modelButton" id="open3d">
+        Show 3D Model</button>
+</div>
+
+<div>
+    <img class="logo" src="Simpla_logo.png" width=200 height=50 />
 </div>
 
 <table id="topTable" style="width:100%">
@@ -57,34 +31,16 @@
     </thead> -->
     <tbody>
         <tr>
-          <td>Package Name</td>
+            <td>Package Name</td>
         </tr>
         <tr>
-          <td>Dimensions</td>
+            <td>Dimensions</td>
         </tr>
         <tr>
-          <td>Quantity</td>
+            <td>Quantity</td>
         </tr>
-        </tbody>
-  </table>
-
-  <style>
-    table, th, td {
-      border: 0px;
-      text-align: center;
-      font-weight: bold;
-      color: whitesmoke;
-    }
-    th, td {
-        padding: 15px;
-    }
-    th {
-        text-align: left;
-    }
-    table {
-        border-spacing: 5px;
-    }
-</style>
+    </tbody>
+</table>
 
 <canvas id="mainCanvas"></canvas>
 

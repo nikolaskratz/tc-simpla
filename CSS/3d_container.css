@@ -1,0 +1,29 @@
+body {
+    background-color: #ccc;
+    /* background: rgba(85, 145, 197, 1); */
+
+    color: #000;
+    margin: 0;
+    height: 100vh;
+}
+
+canvas {
+    display: block;
+}
+
+a {
+    color: #f00;
+}
+
+.logo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 30;
+    margin-bottom: 30;
+}
+
+body {
+    overflow: hidden;
+    /* Hide scrollbars */
+}
