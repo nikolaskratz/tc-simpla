@@ -156,6 +156,7 @@ let animationStart = true
 
 function animate(timeStamp) {
 
+
     secondsPassed = (timeStamp - oldTimeStamp) / 1000
     oldTimeStamp = timeStamp
 
@@ -214,7 +215,6 @@ const ModelButton = document.querySelector('#open3d')
 
 ModelButton.addEventListener('click', () => {
     window.open("3d_container.html", "_self")
-    console.log('openmodel')
 })
 
 //----------------------------------------------------------------------------------------
