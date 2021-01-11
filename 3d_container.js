@@ -10,18 +10,21 @@ var elements = []
 
 //element class
 class Element {
-    constructor(width, height, depth, posX, posY, posZ, destination, velocity, color) {
+    constructor(width, height, depth, posX, posY, posZ, destination, velocity, color, hit) {
         var geometry = new THREE.BoxGeometry(width, height, depth)
         var material = new THREE.MeshLambertMaterial({ color: color })
         var mesh = new THREE.Mesh(geometry, material)
         mesh.position.set(posX, posY, posZ)
+        this.mesh = mesh
+        // elements.push(mesh)
         scene.add(mesh)
         this.destination = destination
         this.velocity = calcVelocity(width, height, depth, posX, posY, posZ, destination)
+        this.hit = hit
     }
 }
 
-var el = new Element(15,15,15,-100,50,0, {x:0, y:0, z:0}, {x:0, y:0, z:0}, 0xFFCC00)
+var el = new Element(15,15,15,-100,50,0, {x:0, y:0, z:0}, {x:0, y:0, z:0}, 0xFFCC00, false)
 elements.push(el)
 // elements[0].velocity = calcVelocity(elements[0])
 
@@ -60,7 +63,7 @@ function calcVelocity(width, height, depth, posX, posY, posZ, destination) {
     velocity.y = yMove/total
     velocity.z = zMove/total
 
-    console.log(element.posY)
+    console.log(velocity.z)
     return velocity
 }
 
@@ -128,12 +131,27 @@ function animate() {
 
     requestAnimationFrame(animate);
 
+    var speed = 5
+
     if(movement) {
-        console.log(elements[0].position.x)
-        elements[0].position.x += elements[0].velocity.x/100
-        elements[0].position.y -= elements[0].velocity.y
-        elements[0].position.z -= elements[0].velocity.z
-        console.log('x: '+elements[0].position.x+', y: '+elements[0].position.y+', z: '+elements[0].position.z)
+        if(!elements[0].hit) {
+            console.log('x position: '+elements[0].mesh.position.x)
+            elements[0].mesh.position.x += elements[0].velocity.x*speed
+            elements[0].mesh.position.y -= elements[0].velocity.y*speed
+            elements[0].mesh.position.z -= elements[0].velocity.z*speed
+
+            //detect hit
+            let distanceY = elements[0].mesh.position.y - elements[0].destination.y
+            if(distanceY < (elements[0].velocity.y*speed)) {
+                while(distanceY < (elements[0].velocity.y*speed) && speed>0.001) {
+                    speed *= 0.5
+                    console.log('speed: '+speed)
+                }
+            }
+            if(distanceY < 0.1) {
+                elements[0].hit = true
+            }
+        }
     }
 
     controls.update();
@@ -150,5 +168,9 @@ function render() {
 const startMovement = document.querySelector('#startMovement')
 
 startMovement.addEventListener('click', () => {
-    movement=true
+    if(movement) {
+        movement = false
+    } else {
+        movement = true
+    }
 })
