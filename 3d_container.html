@@ -9,25 +9,50 @@
 
 </head>
 
-<form>
-	<input type="button" value="Go back!" onclick="history.back()">
-</form>
-
-<div>
+<!-- <div>
 	<img class="logo" src="Simpla_logo.png" width=200 height=85 />
+</div> -->
+
+<div class="button_cont" >
+	<a id="startMovement" class="btn loadContainer">Load Container</a>
 </div>
 
-<div>
-    <button class="button startMovement" id="startMovement">
-        startMovement</button>
-</div>
+<!-- <div class="info1">INFO1</div> -->
+
+
+	<div>
+		<img class="logo" src="Simpla_logo.png" width=200 height=85 />
+	</div>
+
+	
+
 
 <body>
-
+	
 	<script src="three.js/three.js"></script>
 	<script src="three.js/OrbitControls.js"></script>
-	<!-- <script type="module"></script> -->
-	<script src="3d_container.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+	
+	<div>
+		<div id="info1" class="info1">INFO1</div>
+		<div id="info2" class="info2">INFO2</div>
+		<div id="info3" class="info3">INFO3</div>
+		<div id="visualization">
+			<script src="3d_container.js"></script>
+		</div>
+	</div>
+
+
+
+	<!-- <div style="float: left;" class="info1">INFO1</div>
+	<div style="float: right;">
+		<script src="3d_container.js" id="3d"></script>
+	</div> -->
+	<!-- <div id="3d" style="float: left;">
+		<script src="3d_container.js" id="3d"></script>
+	</div> -->
+	
+	
 
 </body>
 

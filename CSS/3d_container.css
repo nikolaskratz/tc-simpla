@@ -5,7 +5,11 @@ body {
     color: #000;
     margin: 0;
     height: 100vh;
+    overflow: hidden;
+
+    
 }
+
 
 canvas {
     display: block;
@@ -23,7 +27,97 @@ a {
     margin-bottom: 30;
 }
 
-body {
+
+.btn {
+    color: #fff !important;
+    text-decoration: none;
+    background: #5591c5;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    }
+
+.btn:hover {
+        background: #434343;
+        letter-spacing: 1px;
+        -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+        transition: all 0.4s ease 0s;
+}
+
+.loadContainer {
+    margin-left: 20px;
+    font-size: xx-large;
+    margin-top: 20px;
+}
+
+.visualization{
+    float: right;
+}
+
+.info1 {
+    float: right;
+    top: 0;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 160px;
+    padding: 15px;
     overflow: hidden;
-    /* Hide scrollbars */
+    border: 3px solid #5591c5;
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+    font: normal normal bold 35px/1 "Courier New", Courier, monospace;
+    color: rgba(0,0,0,1);
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
+    box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
+    text-shadow: 3px 1px 11px rgba(0,0,0,0.36) ;
+}
+.info2 {
+    float: right;
+    top: 0;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 160px;
+    padding: 15px;
+    overflow: hidden;
+    border: 3px solid #5591c5;
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+    font: normal normal bold 35px/1 "Courier New", Courier, monospace;
+    color: rgba(0,0,0,1);
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
+    box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
+    text-shadow: 3px 1px 11px rgba(0,0,0,0.36) ;
+}
+.info3 {
+    float: right;
+    top: 0;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 160px;
+    padding: 15px;
+    overflow: hidden;
+    border: 3px solid #5591c5;
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+    font: normal normal bold 35px/1 "Courier New", Courier, monospace;
+    color: rgba(0,0,0,1);
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
+    box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
+    text-shadow: 3px 1px 11px rgba(0,0,0,0.36) ;
 }

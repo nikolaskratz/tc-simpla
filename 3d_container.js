@@ -1,18 +1,18 @@
 //container dimensions
 var container_width = 100
 var container_height = 50
-var container_depth = 50
+var container_depth = 55
 
 //input for  dummy elements and algorithm output (Dube et. al)
 elementPos = [
-    {x: -70, y: 50, z: 0},
-    {x: -70, y: 50, z: 0},
-    {x: -70, y: 50, z: 0},
-    {x: -70, y: 50, z: 0},
-    {x: -30, y: 50, z: 0},
-    {x: 30, y: 50, z: 0},
-    {x: 80, y: 50, z: 0},
-    {x: 120, y: 50, z: 0}
+    {x: -80, y: 50, z: 0},
+    {x: -80, y: 50, z: 0},
+    {x: -80, y: 50, z: 0},
+    {x: -80, y: 50, z: 0},
+    {x: -45, y: 50, z: 0},
+    {x: 0, y: 50, z: 0},
+    {x: 45, y: 50, z: 0},
+    {x: 110, y: 50, z: 0}
 ]
 
 elementDim = [
@@ -23,7 +23,7 @@ elementDim = [
     {width: 40, height: 30, depth: 10},
     {width: 40, height: 30, depth: 10},
     {width: 35, height: 25, depth: 35},
-    {width: 20, height: 40, depth: 60}
+    {width: 60, height: 20, depth: 40}
 ]
 
 elementDest = [
@@ -37,7 +37,33 @@ elementDest = [
     {x: 35, y: 0, z: 15}
 ]
 
+elementRot = [0,0,0,0,0,0,0,0]
+
 elememntColor = [0xFFCC00, 0xff0000, 0xff8000, 0x808080, 0x00ff00, 0x00ffff, 0x0040ff, 0xff00ff]
+
+//TODO #2
+//adapt pos according to rotation factor
+elementDim.forEach((elDim, index) => {
+    let temp
+    switch(elementRot[index]){
+        case 1:
+            //rotate z
+            break
+        case 2:
+            //rotate y
+            break
+        case 3:
+            //rotate x & y
+            break
+        case 4:
+            //rotate x
+            break
+        case 5:
+            //rotate x & z
+            break
+    }
+
+})
 
 //adapt destination output to match 3d model coordinate system
 elementDest.forEach((dest, index) => {
@@ -59,7 +85,7 @@ var elements = []
 
 //element class
 class Element {
-    constructor(width, height, depth, posX, posY, posZ, destination, velocity, color, hit) {
+    constructor(width, height, depth, posX, posY, posZ, destination, rotate, velocity, color, hit) {
         var geometry = new THREE.BoxGeometry(width, height, depth)
         var material = new THREE.MeshLambertMaterial({ color: color })
         var mesh = new THREE.Mesh(geometry, material)
@@ -70,6 +96,7 @@ class Element {
         this.destination = destination
         this.velocity = calcVelocity(width, height, depth, posX, posY, posZ, destination)
         this.hit = hit
+        this.rotate = rotate
     }
 
 }
@@ -82,6 +109,7 @@ function createElements() {
             elementDim[i].width, elementDim[i].height, elementDim[i].depth, 
             elementPos[i].x, elementPos[i].y, elementPos[i].z,
             {x: elementDest[i].x, y: elementDest[i].y, z: elementDest[i].z},
+            elementRot[i],
             {x:0, y:0, z:0}, 
             elememntColor[i], 
             false)
@@ -141,8 +169,9 @@ function init() {
 
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    renderer.setSize(window.innerWidth-200, window.innerHeight);
+    document.getElementById('visualization').appendChild(renderer.domElement)
+    // document.body.appendChild(renderer.domElement);
 
     camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.set(0, 50, 100);
@@ -199,8 +228,18 @@ function animate() {
     if(movement) {
         elements.forEach((element, index) => {
             if(index==0 || elements[index-1].hit) {
-                if(!element.hit) {
-                    console.log('x position: '+element.mesh.position.x)
+
+                if(element.rotate>0) {
+                    // element.mesh.rotation.x +=0.05
+                    // rotateAroundWorldAxis(element.mesh, xAxis, Math.PI / 180)                    
+                    // console.log(element.mesh.rotation.x)
+                    // this.t1 = new TimelineMax().delay(0)
+                    // this.t1.to(element.mesh.rotation, 0.5, {x: Math.PI*0.5, y:Math.PI*0.5, ease: Expo.easeOut})
+                    element.rotate=0
+
+
+                } else if(!element.hit) {
+                    // console.log('x position: '+element.mesh.position.x)
                     element.mesh.position.x += element.velocity.x*speed
                     element.mesh.position.y -= element.velocity.y*speed
                     element.mesh.position.z -= element.velocity.z*speed
@@ -210,7 +249,7 @@ function animate() {
                     if(distanceY < (element.velocity.y*speed)) {
                         while(distanceY < (element.velocity.y*speed) && speed>0.001) {
                             speed *= 0.5
-                            console.log('speed: '+speed)
+                            // console.log('speed: '+speed)
                         }
                     }
                     if(distanceY < 0.01) {
@@ -225,6 +264,22 @@ function animate() {
     controls.update();
     render();
 
+}
+
+var xAxis = new THREE.Vector3(1,0,0);
+var yAxis = new THREE.Vector3(0,1,0);
+var zAxis = new THREE.Vector3(0,0,1);
+// rotateAroundWorldAxis(mesh, xAxis, Math.PI / 180);
+
+var rotWorldMatrix;
+// Rotate an object around an arbitrary axis in world space       
+function rotateAroundWorldAxis(object, axis, radians) {
+    rotWorldMatrix = new THREE.Matrix4();
+    rotWorldMatrix.makeRotationAxis(axis.normalize(), radians);
+    rotWorldMatrix.multiply(object.matrix);                // pre-multiply
+
+    object.matrix = rotWorldMatrix;
+    object.rotation.setFromRotationMatrix(object.matrix);
 }
 
 function render() {
@@ -242,3 +297,5 @@ startMovement.addEventListener('click', () => {
         movement = true
     }
 })
+
+
