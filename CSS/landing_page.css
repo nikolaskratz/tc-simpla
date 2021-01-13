@@ -1,0 +1,41 @@
+body {
+    /* margin: 0;
+    background: rgba(85, 145, 197, 1); */
+    /*background-color: #ccc;*/
+    background-image:url(container.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+}
+
+.main_logo {
+    width: 1000;
+    height: 200;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 200;
+}
+
+.background {
+    width:100vw;
+    height:100vw;
+    opacity: 50%;
+}
+
+.packingBtn {
+    background-color:rgba(85, 145, 197, 1);
+    width: 150;
+    height: 50;
+    position: absolute;
+    right: 50;
+    bottom: 50;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 20;
+}
+
+
+body {
+    overflow: hidden; /* Hide scrollbars */
+    } 
