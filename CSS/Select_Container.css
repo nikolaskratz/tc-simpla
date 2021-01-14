@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    /* background: rgba(85, 145, 197, 1); */
+    /*background-color: #ccc;*/
+background-color: white;
+}
+h1 {
+    
+    color: #111; 
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-size: 100px; 
+    font-weight: bold; 
+    letter-spacing: -1px; 
+    line-height: 1; 
+    text-align: center; 
+    margin-top: 150;
+    
+}
+
+.logo {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 30;
+    margin-top: 30;
+}
+
+.box1{
+    width:200;
+    height:200;
+    border: 5px solid black ;
+    border-radius: 25px;
+    position:absolute;
+    left: 200;
+    top: 350;
+}
+.box2{
+    width:200;
+    height:200;
+    border: 5px solid black ;
+    border-radius: 25px;
+    position: absolute;;
+    left: 500;
+    top: 350;
+    background-image: url(/images/eurogitterbox.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+}
+.box3{
+    width:200;
+    height:200;
+    border: 5px solid black ;
+    border-radius: 25px;
+    position: absolute;;
+    left: 800;
+    top: 350;
+    background-image: url(/images/Palette_icon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    background-position: center;
+    
+}
+.box4{
+    width:200;
+    height:200;
+    border: 5px solid black ;
+    border-radius: 25px;
+    position: absolute;;
+    left: 1100;
+    top: 350;
+    background-image: url(/images/Transport_Icon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    background-position: center;
+    
+}
+.item {
+    width:180;
+    height: 180;
+    margin-top: 10;
+    margin-left: 10;
+}

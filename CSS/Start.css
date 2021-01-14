@@ -2,7 +2,7 @@ body {
     /* margin: 0;
     background: rgba(85, 145, 197, 1); */
     /*background-color: #ccc;*/
-    background-image:url(container.jpg);
+    background-image:url(/images/container.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     
@@ -33,6 +33,7 @@ body {
     border-radius: 12px;
     text-align: center;
     font-size: 20;
+    color: white;
 }
 
 
