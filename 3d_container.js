@@ -169,9 +169,10 @@ function init() {
 
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth-200, window.innerHeight);
-    document.getElementById('visualization').appendChild(renderer.domElement)
-    // document.body.appendChild(renderer.domElement);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    // document.getElementById('visualization').appendChild(renderer.domElement)
+
+    document.body.appendChild(renderer.domElement);
 
     camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.set(0, 50, 100);

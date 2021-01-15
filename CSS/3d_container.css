@@ -54,70 +54,44 @@ a {
     margin-top: 20px;
 }
 
-.visualization{
-    float: right;
+.info_div {
+    position: absolute;
+    padding: 50px;
+    bottom: 0;
+    
 }
 
-.info1 {
-    float: right;
-    top: 0;
+.info_content {
+    display: inline-block;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    width: 160px;
+    width: 350px;
     padding: 15px;
     overflow: hidden;
     border: 3px solid #5591c5;
     -webkit-border-radius: 11px;
     border-radius: 11px;
-    font: normal normal bold 35px/1 "Courier New", Courier, monospace;
-    color: rgba(0,0,0,1);
     text-align: center;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     -webkit-box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
     box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
     text-shadow: 3px 1px 11px rgba(0,0,0,0.36) ;
+
+} 
+
+.description {
+    font: normal normal 25px/1 "Comic Sans MS", cursive, sans-serif;
+    margin-bottom: 100px;
 }
-.info2 {
-    float: right;
-    top: 0;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    width: 160px;
-    padding: 15px;
-    overflow: hidden;
-    border: 3px solid #5591c5;
-    -webkit-border-radius: 11px;
-    border-radius: 11px;
-    font: normal normal bold 35px/1 "Courier New", Courier, monospace;
-    color: rgba(0,0,0,1);
-    text-align: center;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    -webkit-box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
-    box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
-    text-shadow: 3px 1px 11px rgba(0,0,0,0.36) ;
+
+.content {
+    font: normal normal bold 40px/1 "Comic Sans MS", cursive, sans-serif;
+
 }
-.info3 {
-    float: right;
-    top: 0;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    width: 160px;
-    padding: 15px;
-    overflow: hidden;
-    border: 3px solid #5591c5;
-    -webkit-border-radius: 11px;
-    border-radius: 11px;
-    font: normal normal bold 35px/1 "Courier New", Courier, monospace;
-    color: rgba(0,0,0,1);
-    text-align: center;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    -webkit-box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
-    box-shadow: 5px 5px 2px 2px rgba(85,145,197,0.32) ;
-    text-shadow: 3px 1px 11px rgba(0,0,0,0.36) ;
+
+.info_content + .info_content {
+    margin-left: 50px;
 }
+
