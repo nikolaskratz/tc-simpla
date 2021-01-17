@@ -53,8 +53,8 @@ h1 {
     border: 5px solid black ;
     border-radius: 25px;
     position: absolute;;
-    left: 800;
-    top: 350;
+    left: 200;
+    top: 650;
     background-image: url(/images/Palette_icon.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -68,8 +68,8 @@ h1 {
     border: 5px solid black ;
     border-radius: 25px;
     position: absolute;;
-    left: 1100;
-    top: 350;
+    left: 500;
+    top: 650;
     background-image: url(/images/Transport_Icon.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -96,4 +96,9 @@ h1 {
     position:absolute;
     right: 20;
     bottom: 20;
+}
+
+.form {
+    text-align: center;
+    
 }

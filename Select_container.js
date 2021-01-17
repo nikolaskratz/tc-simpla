@@ -27,5 +27,17 @@ function printList(){
     
 }
 
+
+document.querySelector('#berechnen').addEventListener('click', berechne_Volumen);
+ 
+  function berechne_Volumen () {
+	var Height = parseInt(document.getElementById("Height").value),
+        Width = parseInt(document.getElementById("Width").value),
+        Depth = parseInt(document.getElementById("Depth").value),
+	    Volume = Math.round(Height*Width*Depth);
+				
+	document.querySelector("output").textContent = Volume ;
+  }
+
 /*document.querySelector('.results').innerHTML = 'Hello World!';
 */
