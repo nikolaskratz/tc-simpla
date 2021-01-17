@@ -20,12 +20,13 @@ function addTolist(item, quantity){
     })
 }
 
-function printList(){
-    var Selected_items = {"Palette1": 1, "Box": 2};
-    console.log(Selected_items);
-    
-    
-}
+document.querySelector('#Add4').addEventListener('click', printList);
+    function printList(){
+        var Selected_items = {"Palette1": 1, "Box": 2};
+        document.querySelector("output2").textContent = Selected_items ;
+        
+        
+    }
 
 
 document.querySelector('#berechnen').addEventListener('click', berechne_Volumen);

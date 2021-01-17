@@ -2,7 +2,7 @@
     <title>SIMPLA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="CSS/Select_Container.css">
+    <link rel="stylesheet" href="CSS/Select_Box.css">
     
 </head>
 
@@ -13,7 +13,7 @@
     
     <div >
         <h1>
-            Select your Container
+            Select your Boxes
         </h1>
     </div>
     <!-- 
@@ -21,7 +21,10 @@
         <a href=""></a><img class="item" src="images/eurogitterbox.jpg" />
     </div>      -->
     <div class= "box1">
-        <form class= "form"> <br>
+        <form class= "form"> 
+            <h3>
+                Custom Box
+            </h3> 
             <label for="Height">Height: 
               <input id="Height" type="number" min="100" max="220" step="1" value="175">
             cm</label> <br> 
@@ -41,14 +44,22 @@
           </form>
         
     </div>
+
     <div class= "box2">
     </div>
+    
     <div class= "box3">
     </div>
+    
     <div> 
         <input type="button" class= "box4" id="Add4"/>
     </div>
     
+    <label class="selected"> 
+        <h3>What you got</h3>
+        <output2>nothing selected so far</output2>
+
+    </label>
     </body>
 
 <div>
@@ -58,4 +69,4 @@
 
 
 </html>
-<script src="./Select_container.js"></script>
+<script src="./Select_Box.js"></script>

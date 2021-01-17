@@ -102,3 +102,10 @@ h1 {
     text-align: center;
     
 }
+
+.selected {
+    position: absolute;
+    top: 350;
+    right: 500;
+    text-align: center;
+}
