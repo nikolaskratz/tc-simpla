@@ -271,7 +271,7 @@ function animate() {
                             // console.log('speed: '+speed)
                         }
                     }
-                    if(distanceY < 0.01) {
+                    if(distanceY < 0.001) {
                         element.hit = true
                         updateInfoBoxes(element)
                     }
