@@ -2,7 +2,7 @@ body {
     /*margin: 0;
      background: rgba(85, 145, 197, 1); */
     /*background-color: #ccc;*/
-background-color: white;
+    background-color: white;
 }
 h1 {
     
@@ -13,8 +13,34 @@ h1 {
     letter-spacing: -1px; 
     line-height: 1; 
     text-align: center; 
-    margin-top: 150;
+    margin-top: 100;
     
+}
+
+.field1 {
+    background-color: rgb(236, 234, 234) ;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.field2 {
+    width: 49.5%;
+    height: calc(100% - 350px);
+    background-color: rgb(236, 234, 234);
+    position: absolute;
+    top: 300;
+    left: 0;
+}
+
+.field3 {
+    width: 49.5%;
+    height: calc(100% - 350px);
+    background-color: rgb(236, 234, 234);
+    position: absolute;
+    top: 300;
+    right: 0;
 }
 
 .logo {
@@ -32,7 +58,7 @@ h1 {
     border-radius: 25px;
     position:absolute;
     left: 200;
-    top: 350;
+    top: 50;
 }
 .box2{
     width:200;
@@ -41,7 +67,7 @@ h1 {
     border-radius: 25px;
     position: absolute;;
     left: 500;
-    top: 350;
+    top: 50;
     background-image: url(/images/eurogitterbox.jpg);
     background-repeat: no-repeat;
     background-size: contain;
@@ -54,7 +80,7 @@ h1 {
     border-radius: 25px;
     position: absolute;;
     left: 200;
-    top: 650;
+    top: 350;
     background-image: url(/images/Palette_icon.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -69,7 +95,7 @@ h1 {
     border-radius: 25px;
     position: absolute;;
     left: 500;
-    top: 650;
+    top: 350;
     background-image: url(/images/Transport_Icon.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -105,7 +131,7 @@ h1 {
 
 .selected {
     position: absolute;
-    top: 350;
+    top: 50;
     right: 500;
     text-align: center;
 }
