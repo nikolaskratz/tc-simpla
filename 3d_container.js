@@ -405,3 +405,13 @@ close.addEventListener('click', () => {
 
 })
 
+const forward = document.querySelector('#forward')
+
+forward.addEventListener('click', () => {
+
+    document.getElementById('forward').style.background = "green"
+    document.getElementById('forward').style.color = "black"
+    document.getElementById('forward').innerHTML = "Plan Forwarded"
+
+})
+
