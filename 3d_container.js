@@ -1,10 +1,16 @@
-//container dimensions
+// //container dimensions
 var container_width = 100
 var container_height = 50
 var container_depth = 55
 var container_vol = container_depth*container_height*container_width
 
-//input for  dummy elements and algorithm output (Dube et. al)
+//container dimensions 2
+// var container_width = 800
+// var container_height = 243
+// var container_depth = 259
+// var container_vol = container_depth*container_height*container_width
+
+// //input for  dummy elements and algorithm output (Dube et. al)
 elementPos = [
     {x: -80, y: 50, z: 0},
     {x: -80, y: 50, z: 0},
@@ -15,6 +21,27 @@ elementPos = [
     {x: 45, y: 50, z: 0},
     {x: 110, y: 50, z: 0}
 ]
+
+//elementPos 2
+// elementPos = [
+//     {x: -450, y: 250, z: 0},
+//     {x: -250, y: 250, z: 0},
+//     {x: -450, y: 250, z: 0},
+//     //gridboxes
+//     {x: -100, y: 250, z: 0},
+//     {x: 30, y: 250, z: 0},
+//     {x: 30, y: 250, z: 0},
+//     {x: -100, y: 250, z: 0},
+//     //paletten
+//     {x: 180, y: 250, z: 0},
+//     {x: 180, y: 250, z: 0},
+//     {x: 180, y: 250, z: 0},
+//     {x: 300, y: 250, z: 0},
+//     {x: 300, y: 250, z: 0},
+//     //custom
+//     {x: 300, y: 250, z: 0},
+//     {x: 300, y: 250, z: 0}
+// ]
 
 elementDim = [
     {width: 15, height: 15, depth: 15},
@@ -27,6 +54,28 @@ elementDim = [
     {width: 60, height: 20, depth: 40}
 ]
 
+//elementDim2
+// elementDim = [
+//     //rp
+//     {width: 150, height: 100, depth: 80},
+//     {width: 100, height: 80, depth: 150},
+//     {width: 150, height: 100, depth: 80},
+//     //gridboxes
+//     {width: 97, height: 83, depth: 124},
+//     {width: 124, height: 97, depth: 83},
+//     {width: 124, height: 97, depth: 83},
+//     {width: 97, height: 83, depth: 124},
+//     //palette
+//     {width: 120, height: 40, depth: 80},
+//     {width: 120, height: 40, depth: 80},
+//     {width: 120, height: 40, depth: 80},
+//     {width: 40, height: 120, depth: 80},
+//     {width: 40, height: 120, depth: 80},
+//     //custom
+//     {width: 30, height: 30, depth: 30},
+//     {width: 30, height: 30, depth: 30}
+// ]
+
 elementDest = [
     {x: 0, y: 0, z: 0},
     {x: 15, y: 0, z: 0},
@@ -38,9 +87,30 @@ elementDest = [
     {x: 35, y: 0, z: 15}
 ]
 
+// elementDest = [
+//     //rp
+//     {x: 0, y: 0, z: 0},
+//     {x: 150, y: 0, z: 0},
+//     {x: 0, y: 100, z: 0},
+//     //gridboxes
+//     {x: 150, y: 100, z: 0},
+//     {x: 0, y: 0, z: 80},
+//     {x: 0, y: 97, z: 80},
+//     {x: 150, y: 0, z: 150},
+//     //palette
+//     {x: 0, y: 200, z: 0},
+//     {x: 120, y: 200, z: 0},
+//     {x: 0, y: 194, z: 80},
+//     {x: 150, y: 97, z: 150},
+//     {x: 190, y: 97, z: 150},
+//     //custom
+//     {x: 120, y: 194, z: 80},
+//     {x: 150, y: 217, z: 150}   
+// ]
+
 elementRot = [0,0,0,0,0,0,0,0]
 elementWeight = [50, 50, 50, 50, 453, 399, 629, 301]
-elememntColor = [0xFFCC00, 0xff0000, 0xff8000, 0x808080, 0x00ff00, 0x00ffff, 0x0040ff, 0xff00ff]
+elememntColor = [0xFFCC00, 0xff0000, 0x128000, 0x0f000f, 0x00ff00, 0x00ffff, 0x0040ff, 0xff00ff]
 
 
 //TODO #2
@@ -189,6 +259,7 @@ function init() {
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     // document.getElementById('visualization').appendChild(renderer.domElement)
+    document.getElementById('popup').style.display = "none"
 
     document.body.appendChild(renderer.domElement);
 
@@ -198,8 +269,8 @@ function init() {
     // controls
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
+    // controls.enableDamping = true;
+    // controls.dampingFactor = 0.05;
 
     controls.screenSpacePanning = false;
 
@@ -318,4 +389,19 @@ startMovement.addEventListener('click', () => {
     }
 })
 
+const save = document.querySelector('#save')
+
+save.addEventListener('click', () => {
+
+    document.getElementById('popup').style.display = "block"
+
+})
+
+const close = document.querySelector('#close')
+
+close.addEventListener('click', () => {
+
+    document.getElementById('popup').style.display = "none"
+
+})
 

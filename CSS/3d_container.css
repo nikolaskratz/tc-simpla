@@ -54,6 +54,16 @@ a {
     margin-top: 20px;
 }
 
+.save {
+    margin-left: 20px;
+    font-size: xx-large;
+    margin-top: 20px;
+}
+
+.close {
+    margin-top: 30px;
+}
+
 .info_div {
     position: absolute;
     /* padding: 50px; */
@@ -96,6 +106,12 @@ a {
     /* margin-left: 50px; */
     margin-bottom: 50px;
     margin-top: 50px;
+}
+
+.popup{
+    margin-left: 43%;
+    margin-bottom:500px;
+    background-color: white;
 }
 
 .legend {
