@@ -33,7 +33,7 @@ a {
     text-decoration: none;
     background: #5591c5;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     display: inline-block;
     border: none;
     transition: all 0.4s ease 0s;
@@ -56,17 +56,18 @@ a {
 
 .info_div {
     position: absolute;
-    padding: 50px;
+    /* padding: 50px; */
+    margin-left: 20px;
     bottom: 0;
     
 }
 
 .info_content {
-    display: inline-block;
+    /* display: inline-block; */
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    width: 350px;
+    width: 275px;
     padding: 15px;
     overflow: hidden;
     border: 3px solid #5591c5;
@@ -82,16 +83,18 @@ a {
 } 
 
 .description {
-    font: normal normal 25px/1 "Comic Sans MS", cursive, sans-serif;
+    font: normal normal 20px/1 "Comic Sans MS", cursive, sans-serif;
     margin-bottom: 100px;
 }
 
 .content {
-    font: normal normal bold 40px/1 "Comic Sans MS", cursive, sans-serif;
+    font: normal normal bold 30px/1 "Comic Sans MS", cursive, sans-serif;
 
 }
 
 .info_content + .info_content {
-    margin-left: 50px;
+    /* margin-left: 50px; */
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
 
