@@ -2,6 +2,7 @@
 var container_width = 100
 var container_height = 50
 var container_depth = 55
+var container_vol = container_depth*container_height*container_width
 
 //input for  dummy elements and algorithm output (Dube et. al)
 elementPos = [
@@ -38,8 +39,9 @@ elementDest = [
 ]
 
 elementRot = [0,0,0,0,0,0,0,0]
-
+elementWeight = [50, 50, 50, 50, 453, 399, 629, 301]
 elememntColor = [0xFFCC00, 0xff0000, 0xff8000, 0x808080, 0x00ff00, 0x00ffff, 0x0040ff, 0xff00ff]
+
 
 //TODO #2
 //adapt pos according to rotation factor
@@ -80,12 +82,21 @@ animate()
 //public vars
 var movement = false
 var elements = []
+var infoWeight = document.getElementById('infoWeight')
+var infoVolume = document.getElementById('infoVolume')
+var infoAxis = document.getElementById('infoAxis')
+var totalWeight = 0
+var totalVolume = 0
+var totalAxis = 0 //in % on left side
 
 
 
 //element class
 class Element {
-    constructor(width, height, depth, posX, posY, posZ, destination, rotate, velocity, color, hit) {
+    constructor(width, height, depth, posX, posY, posZ, destination, rotate, velocity, color, hit, weight) {
+        this.width = width
+        this.height = height
+        this.depth = depth
         var geometry = new THREE.BoxGeometry(width, height, depth)
         var material = new THREE.MeshLambertMaterial({ color: color })
         var mesh = new THREE.Mesh(geometry, material)
@@ -97,6 +108,7 @@ class Element {
         this.velocity = calcVelocity(width, height, depth, posX, posY, posZ, destination)
         this.hit = hit
         this.rotate = rotate
+        this.weight = weight
     }
 
 }
@@ -112,14 +124,11 @@ function createElements() {
             elementRot[i],
             {x:0, y:0, z:0}, 
             elememntColor[i], 
-            false)
+            false,
+            elementWeight[i])
         elements.push(el)
     }
 }
-
-// var el2 = new Element(1,30,1,0,0,0, {x:0, y:0, z:0}, {x:0, y:0, z:0}, 0x000000, false)
-// var el3 = new Element(30,1,1,0,0,0, {x:0, y:0, z:0}, {x:0, y:0, z:0}, 0x000000, false)
-// var el4 = new Element(1,1,30,0,0,0, {x:0, y:0, z:0}, {x:0, y:0, z:0}, 0x000000, false)
 
 function calcVelocity(width, height, depth, posX, posY, posZ, destination) {
     var velocity = {x:0, y:0, z:0}
@@ -159,6 +168,15 @@ function calcVelocity(width, height, depth, posX, posY, posZ, destination) {
     velocity.z = zMove/total
 
     return velocity
+}
+
+function updateInfoBoxes(element) {
+    totalWeight += element.weight
+    infoWeight.innerHTML = totalWeight + " kg"
+
+    totalVolume += (element.width*element.height*element.depth)
+    let usedVol = Math.round(totalVolume/container_vol*100)
+    infoVolume.innerHTML = usedVol + " %"
 }
 
 function init() {
@@ -253,8 +271,9 @@ function animate() {
                             // console.log('speed: '+speed)
                         }
                     }
-                    if(distanceY < 0.01) {
+                    if(distanceY < 0.001) {
                         element.hit = true
+                        updateInfoBoxes(element)
                     }
                 }
             }
