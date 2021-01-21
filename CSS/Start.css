@@ -44,7 +44,20 @@ body {
 
 .packingBtn {
     background-color:rgba(85, 145, 197, 1);
-    width: 150;
+    width: 180;
+    height: 50;
+    margin: auto;
+    position: relative;
+    top: 50;
+    
+    border-radius: 12px;
+    text-align: center;
+    font-size: 20;
+    color: white;
+}
+.UploadBtn {
+    background-color:rgba(85, 145, 197, 1);
+    width: 180;
     height: 50;
     margin: auto;
     position: relative;
