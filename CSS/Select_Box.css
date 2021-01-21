@@ -87,9 +87,11 @@ h1 {
     position: absolute;;
     left: 500;
     top: 50;
-    background-image: url(/images/eurogitterbox.jpg);
+    background-image: url(/images/Gitterbox_icon.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
+    position: absolute;
+    background-position:-19;
     
 }
 .Palette{
