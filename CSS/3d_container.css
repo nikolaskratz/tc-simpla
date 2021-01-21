@@ -29,7 +29,7 @@ a {
 
 
 .btn {
-    color: #fff !important;
+    color: #ffffff !important;
     text-decoration: none;
     background: #5591c5;
     padding: 20px;
@@ -62,7 +62,20 @@ a {
 
 .close {
     margin-top: 30px;
+    font-size: large;
+    width: 100px;
 }
+
+.forward {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: black;
+    width: 85%;
+    background-color: gray;
+    font-size: 30px;
+            
+}
+
 
 .info_div {
     position: absolute;
@@ -109,10 +122,24 @@ a {
 }
 
 .popup{
-    margin-left: 43%;
-    margin-bottom:500px;
-    background-color: white;
+    margin-left: 35%;
+    margin-bottom:400px;
+    background-color: #ffffff;
+    opacity: 0.9;
+    display: none;
+    width: 500px;
 }
+
+.popupText{
+    font-size: large;
+    margin-top: 10px;
+}
+
+.popupText2{
+    font-size: xx-large;
+    margin-top: 10px;
+}
+
 
 .legend {
     position: absolute;
