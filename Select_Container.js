@@ -13,17 +13,23 @@ AddBtn4.addEventListener('click', () => {
 
 let Selected_items = {"Palette1": 1, "Box": 2};
 
-function addTolist(item, quantity){
+function addToDict(item, quantity){
     Selected_items.push({
         key: item,
         value: quantity,
     })
 }
 
-document.querySelector('#Add4').addEventListener('click', printList);
+
+document.querySelector('#Add4').addEventListener('click', addToList);
     function printList(){
-        var Selected_items = {"Palette1": 1, "Box": 2};
-        document.querySelector("output2").textContent = Selected_items ;
+        var list= []
+        var Selected_items = {
+            "Palette1": 1, 
+            "Box": 2
+        };
+
+        document.querySelector("output2").textContent(Selected_items) ;
         
         
     }
@@ -42,3 +48,5 @@ document.querySelector('#berechnen').addEventListener('click', berechne_Volumen)
 
 /*document.querySelector('.results').innerHTML = 'Hello World!';
 */
+
+const div = document.querySelector('box2')

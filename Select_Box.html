@@ -23,7 +23,7 @@
         <div class= "box1">
             <a href=""></a><img class="item" src="images/eurogitterbox.jpg" />
         </div>      -->
-        <div class= "box1">
+        <div class= "Custom_Box">
             <form class= "form"> 
                 <h3>
                     Custom Package
@@ -39,40 +39,45 @@
                 cm</label> <br> 
                 <label for="masse">Weight: 
                 <input id="masse" type="number" min="30" max="225" step="0.1" value="75">
-                kg</label> <br> <br>
+                kg</label> <!--<br> <br>
                 <label>Volume: 
                 <output>wait for calculation</output>
                 </label> <br>
-                <button type="button" id="berechnen">Create Custom Package</button>
+                <button type="button" id="berechnen">Create Custom Package</button>-->
             </form>
-            
+              
+            <input value= "Create Custom" name="Custom" type="button" class="Custom" id="AddCustom" />
+         
         </div>
 
-        <div class= "box2">
+        <div>
+            <input name="Gitterbox" type="button" class= "Gitterbox" id="AddGitterbox"/>
         </div>
         
-        <div class= "box3">
+        <div>
+            <input name="Palette" type="button" class= "Palette" id="AddPalette"/>
         </div>
         
         <div> 
-            <input type="button" class= "box4" id="Add4"/>
+            <input name="box4" type="button" class= "box4" id="Add4"/> 
+            
         </div>
     
     </div>
 
     <div class="field3">
         <label class="selected"> 
-            <h3>What you got</h3>
-            <output2>nothing selected so far</output2>
+            <h2>What you got</h2>
+            <ul id="List"></ul>
 
         </label>
-
 
         <div>
             <button class="GoBtn" id='Go'>
                 Start Loading</button>
         </div>
     </div>    
+    
 </body>
 
 </html>

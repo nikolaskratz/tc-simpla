@@ -23,19 +23,38 @@ body {
     opacity: 50%;
 }
 
+
+
+.Box {
+    margin: auto;
+    position: relative;
+    top: 300;
+    width: 500px;
+    height: 170;
+    text-align: center;
+    background-color: white;
+    border-radius: 12px;
+}
+.select {
+    
+    margin: auto;
+    position: relative;
+    top: 30;
+}
+
 .packingBtn {
     background-color:rgba(85, 145, 197, 1);
     width: 150;
     height: 50;
-    position: absolute;
-    left: 45%;
-    bottom: 300;
+    margin: auto;
+    position: relative;
+    top: 50;
+    
     border-radius: 12px;
     text-align: center;
     font-size: 20;
     color: white;
 }
-
 
 body {
     overflow: hidden; /* Hide scrollbars */

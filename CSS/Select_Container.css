@@ -59,6 +59,7 @@ h1 {
     position:absolute;
     left: 200;
     top: 50;
+    background-color: white;
 }
 .box2{
     width:200;
@@ -70,9 +71,11 @@ h1 {
     top: 50;
     background-image: url(/images/Container-10.png);
     background-repeat: no-repeat;
-    background-size: contain;
-    
+    background-size: cover;
+    position: absolute;
+    background-position: center;
 }
+
 .box3{
     width:200;
     height:200;

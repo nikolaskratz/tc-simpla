@@ -13,21 +13,24 @@ AddBtn4.addEventListener('click', () => {
 
 let Selected_items = {"Palette1": 1, "Box": 2};
 
-function addTolist(item, quantity){
-    Selected_items.push({
-        key: item,
-        value: quantity,
-    })
-}
 
-document.querySelector('#Add4').addEventListener('click', printList);
-    function printList(){
-        var Selected_items = {"Palette1": 1, "Box": 2};
-        document.querySelector("output2").textContent = Selected_items ;
-        
-        
+document.querySelector('#Add4').addEventListener('click', addToList);
+document.querySelector('#AddPalette').addEventListener('click', addToList);
+document.querySelector('#AddGitterbox').addEventListener('click', addToList);
+document.querySelector('#AddCustom').addEventListener('click', addToList);
+
+ 
+
+function addToList() {
+    var arg = this.id;
+    let package = document.getElementById(arg).className;
+    let amount = 1;
+    
+    let li = document.createElement("li");
+    li.textContent = amount + 'x ' + package ;
+    document.getElementById("List").appendChild(li);
     }
-
+      
 
 document.querySelector('#berechnen').addEventListener('click', berechne_Volumen);
  
