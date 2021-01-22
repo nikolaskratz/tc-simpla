@@ -30,7 +30,7 @@ h1 {
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
-    height: calc(100% - 350px);
+    height: calc(100% - 300px);
     background-color: rgb(236, 234, 234);
     position: absolute;
     top: 300;
