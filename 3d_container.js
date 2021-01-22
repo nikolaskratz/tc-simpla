@@ -86,7 +86,7 @@ elementDest = [
     ]
 
 elementRot = [0,0,0,0,0,0,0,0,0,0,0, 0]
-elementWeight = [50, 50, 50, 50, 453, 399, 629, 301, 301, 301, 301, 301]
+elementWeight = [851, 851, 750, 750, 411, 411, 411, 411, 232, 232, 232, 232]
 elememntColor = [0x0000ff, 0x0000cc, 0xFF0000, 0xb20000, 0x008000, 0x007300, 0x008000, 0x007300, 0x4c4c4c, 0x404040, 0x4c4c4c, 0x404040]
 
 
@@ -241,7 +241,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.set(0, 50, 100);
+    camera.position.set(0, 55, 100);
 
     // controls
 

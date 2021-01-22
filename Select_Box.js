@@ -54,7 +54,8 @@ const add_custom = document.querySelector('#AddCustom')
 const add_Gitterbox = document.querySelector('#AddGitterbox')
 const add_Palette = document.querySelector('#AddPalette')
 const add_box4 = document.querySelector('#Add4')
-var table = document.getElementById("table_selected");
+var table = document.getElementById("table_selected")
+var tbodyRef = document.getElementById("table_selected").getElementsByTagName('tbody')[0]
 
 //hardcoded Reihenfolge: custom, gitter, Palette, no4
 var selected_packages = [0, 0, 0, 0]
@@ -120,26 +121,27 @@ function updateTable (input) {
 }
 
 function addNewRow (input) {
-  
-  var row = table.insertRow(0)
+  var row = tbodyRef.insertRow()
+  // var row = table.insertRow(table.rows.length)
   var cell1 = row.insertCell(0)
   var cell2 = row.insertCell(1)
+  
 
   switch(input){
     case 0:
-      cell1.innerHTML = "Custom"
+      cell1.innerHTML = "Custom Package"
       cell2.id = input
       break
     case 1:
-      cell1.innerHTML = "Gitterbox"
+      cell1.innerHTML = "Gridbox"
       cell2.id = input
       break
     case 2:
-      cell1.innerHTML = "Palette"
+      cell1.innerHTML = "EPAL"
       cell2.id = input
       break
     case 3:
-      cell1.innerHTML = "Box4"
+      cell1.innerHTML = "RP-Palett"
       cell2.id = input
       break
 

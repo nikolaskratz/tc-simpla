@@ -23,6 +23,7 @@ h1 {
     top: 0;
     right: 0;
     left: 0;
+    font-family: "Courier New", Courier, monospace;
 }
 
 .field2 {
@@ -161,7 +162,26 @@ h1 {
 
 .table_selected{
     position: absolute;
+    width: 700;
     top: 50;
-    right: 500;
+    right: 200;
     text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    height: auto;
+    border: 0px solid #AAAAAA;
+    padding: 6px 10px;
+    font-size: 40px;
+    font-weight: bold;
+    border-spacing: 0 30px;
+}
+
+.table_selected tbody td {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+    
+  }
+
+.table_selected thead {
+    border-bottom: 20px solid #444444;
 }
