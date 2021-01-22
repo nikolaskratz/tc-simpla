@@ -51,7 +51,7 @@ h1 {
     height: 300;
     box-sizing: border-box;
     position: relative;
-    top: 10%;
+    top: 20%;
     cursor: pointer;
     
 }
@@ -60,29 +60,33 @@ h1 {
     border: 5px solid black ;
     border-radius: 25px;
     background-color: white;
+    background-image: url(/images/487622.png);
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
 }   
-.box2{
+.Container10{
     border: 5px solid black ;
     border-radius: 25px;
-    background-image: url(/images/Container-10.png);
+    background-image: url(/images/container-10FT.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
    }
 
-.box3{
+.Container20{
     border: 5px solid black ;
     border-radius: 25px;
-    background-image: url(/images/Container-20.png);
+    background-image: url(/images/container-20FT.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     
 }
-.box4{
+.Container40{
     border: 5px solid black ;
     border-radius: 25px;
-    background-image: url(/images/Container-40.png);
+    background-image: url(/images/container-40FT.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -99,6 +103,8 @@ h1 {
     cursor: pointer;
     width: 300px;
     height: 300px;
+    /*transform: translate(-50%,-50%);*/
+
 }
 
 .front, .back{
@@ -164,59 +170,3 @@ h1 {
     text-align: center;
     
 }
-
-/*.box1{
-    width:300;
-    height:300;
-    border: 5px solid black ;
-    border-radius: 25px;
-    position:absolute;
-    left: 200;
-    top: 100;
-    background-color: white;
-}
-.box2{
-    width:300;
-    height:300;
-    border: 5px solid black ;
-    border-radius: 25px;
-    position: absolute;;
-    left: 600;
-    top: 100;
-    background-image: url(/images/Container-10.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    background-position: center;
-}
-
-.box3{
-    width:300;
-    height:300;
-    border: 5px solid black ;
-    border-radius: 25px;
-    position: absolute;;
-    left: 1000;
-    top: 100;
-    background-image: url(/images/Container-20.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    background-position: center;
-    
-}
-.box4{
-    width:300;
-    height:300;
-    border: 5px solid black ;
-    border-radius: 25px;
-    position: absolute;;
-    left: 1400;
-    top: 100;
-    background-image: url(/images/Container-40.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    background-position: center;
-    
-}*/
