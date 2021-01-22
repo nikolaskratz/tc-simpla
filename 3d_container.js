@@ -87,7 +87,7 @@ elementDest = [
 
 elementRot = [0,0,0,0,0,0,0,0,0,0,0, 0]
 elementWeight = [50, 50, 50, 50, 453, 399, 629, 301, 301, 301, 301, 301]
-elememntColor = [0x0000ff, 0x0000cc, 0xFF0000, 0xcc0000, 0x008000, 0x007300, 0x008000, 0x007300, 0x4c4c4c, 0x404040, 0x4c4c4c, 0x404040]
+elememntColor = [0x0000ff, 0x0000cc, 0xFF0000, 0xb20000, 0x008000, 0x007300, 0x008000, 0x007300, 0x4c4c4c, 0x404040, 0x4c4c4c, 0x404040]
 
 
 //TODO #2
@@ -269,11 +269,11 @@ function init() {
 
     scene.add(new THREE.AmbientLight(0xECD3CB));
 
-    const light = new THREE.SpotLight(0x333333, 0.1);
+    const light = new THREE.SpotLight(0x333333, 1.5);
     light.position.set(-10, 500, 2000);
     scene.add(light);
 
-    const light2 = new THREE.SpotLight(0x333333, 0.1);
+    const light2 = new THREE.SpotLight(0x333333, 1.5);
     light2.position.set(0, 500, -2000);
     scene.add(light2);
 
