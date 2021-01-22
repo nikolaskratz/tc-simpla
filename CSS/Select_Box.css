@@ -158,3 +158,10 @@ h1 {
     right: 500;
     text-align: center;
 }
+
+.table_selected{
+    position: absolute;
+    top: 50;
+    right: 500;
+    text-align: center;
+}
