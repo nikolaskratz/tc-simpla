@@ -1,19 +1,30 @@
 // //container dimensions
 var container_width = 100
 var container_height = 50
-var container_depth = 55
+var container_depth = 50
 var container_vol = container_depth*container_height*container_width
+
+//container dimensions 2
+// var container_width = 800
+// var container_height = 243
+// var container_depth = 259
+// var container_vol = container_depth*container_height*container_width
 
 // //input for  dummy elements and algorithm output (Dube et. al)
 elementPos = [
-    {x: -80, y: 50, z: 0},
-    {x: -80, y: 50, z: 0},
-    {x: -80, y: 50, z: 0},
-    {x: -80, y: 50, z: 0},
-    {x: -45, y: 50, z: 0},
-    {x: 0, y: 50, z: 0},
-    {x: 45, y: 50, z: 0},
-    {x: 110, y: 50, z: 0}
+    {x: -93, y: 50, z: 0},
+    {x: -93, y: 50, z: 0},
+    {x: -25, y: 50, z: 0},
+    {x: -25, y: 50, z: 0},
+    {x: 12, y: 50, z: 0},
+    {x: 12, y: 50, z: 0},
+    {x: 56, y: 50, z: 0},
+    {x: 56, y: 50, z: 0},
+    {x: 90, y: 50, z: 0},
+    {x: 90, y: 50, z: 0},
+    {x: 131, y: 50, z: 0},
+    {x: 131, y: 50, z: 0}
+
 ]
 
 //elementPos 2
@@ -32,18 +43,20 @@ elementPos = [
 
 //elementDim2
 elementDim = [ 
-{width: 60, height: 20, depth: 40},
-{width: 60, height: 20, depth: 40},
-{width: 35, height: 25, depth: 35},
-{width: 35, height: 25, depth: 35},
-{width: 40, height: 30, depth: 10},
-{width: 40, height: 30, depth: 10},
-{width: 40, height: 30, depth: 10},
-{width: 40, height: 30, depth: 10},
-{width: 10, height: 10, depth: 10},
-{width: 10, height: 10, depth: 10},
-{width: 10, height: 10, depth: 10}
-]
+    {width: 60, height: 20, depth: 40},
+    {width: 60, height: 20, depth: 40},
+    {width: 35, height: 25, depth: 40},
+    {width: 35, height: 25, depth: 40},
+    {width: 30, height: 10, depth: 40},
+    {width: 30, height: 10, depth: 40},
+    {width: 40, height: 30, depth: 10},
+    {width: 40, height: 30, depth: 10},
+    {width: 10, height: 50, depth: 10},
+    {width: 10, height: 50, depth: 10},
+    {width: 50, height: 10, depth: 10},
+    {width: 50, height: 10, depth: 10}
+    ]
+    
 
 // elementDest = [
 //     {x: 0, y: 0, z: 0},
@@ -56,7 +69,8 @@ elementDim = [
 //     {x: 35, y: 0, z: 15}
 // ]
 
-    elementDest = [
+//element Destination 2
+elementDest = [
     {x: 0, y:0, z:0},
     {x: 0, y:20, z:0},
     {x: 60, y:0, z:0},
@@ -67,12 +81,13 @@ elementDim = [
     {x: 40, y:0, z:40},
     {x: 80, y:0, z:40},
     {x: 90, y:0, z:40},
-    {x: 0, y:30, z:40}
+    {x: 0, y:30, z:40},
+    {x: 0, y:40, z:40}
     ]
 
-elementRot = [0,0,0,0,0,0,0,0]
-elementWeight = [50, 50, 50, 50, 453, 399, 629, 301]
-elememntColor = [0xFFCC00, 0xff0000, 0x128000, 0x0f000f, 0x00ff00, 0x00ffff, 0x0040ff, 0xff00ff]
+elementRot = [0,0,0,0,0,0,0,0,0,0,0, 0]
+elementWeight = [50, 50, 50, 50, 453, 399, 629, 301, 301, 301, 301, 301]
+elememntColor = [0x0000ff, 0x0000cc, 0xFF0000, 0xcc0000, 0x008000, 0x007300, 0x008000, 0x007300, 0x4c4c4c, 0x404040, 0x4c4c4c, 0x404040]
 
 
 //TODO #2
@@ -252,11 +267,15 @@ function init() {
 
     // lights
 
-    scene.add(new THREE.AmbientLight(0x555555));
+    scene.add(new THREE.AmbientLight(0xECD3CB));
 
-    const light = new THREE.SpotLight(0xffffff, 1.5);
-    light.position.set(0, 500, 2000);
+    const light = new THREE.SpotLight(0x333333, 0.1);
+    light.position.set(-10, 500, 2000);
     scene.add(light);
+
+    const light2 = new THREE.SpotLight(0x333333, 0.1);
+    light2.position.set(0, 500, -2000);
+    scene.add(light2);
 
     window.addEventListener('resize', onWindowResize, false);
 
