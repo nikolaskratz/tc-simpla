@@ -87,6 +87,9 @@ h1 {
     background-position: center;
 }
 
+.active{
+    border: 10px green;
+}
 /*.box1{
     width:300;
     height:300;
