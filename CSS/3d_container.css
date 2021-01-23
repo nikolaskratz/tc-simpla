@@ -25,6 +25,8 @@ a {
     top: 0;
     margin-right: 30px;
     margin-top: 30px;
+    width: 200px;
+    height: auto;
 }
 
 
@@ -49,13 +51,15 @@ a {
 }
 
 .loadContainer {
+    position: absolute;
     margin-left: 20px;
     font-size: xx-large;
     margin-top: 20px;
 }
 
 .save {
-    margin-left: 20px;
+    position: absolute;
+    margin-left: 320px;
     font-size: xx-large;
     margin-top: 20px;
 }

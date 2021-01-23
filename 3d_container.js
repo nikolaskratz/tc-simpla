@@ -12,8 +12,8 @@ var container_vol = container_depth*container_height*container_width
 
 // //input for  dummy elements and algorithm output (Dube et. al)
 elementPos = [
-    {x: -93, y: 50, z: 0},
-    {x: -93, y: 50, z: 0},
+    {x: -95, y: 50, z: 0},
+    {x: -95, y: 50, z: 0},
     {x: -25, y: 50, z: 0},
     {x: -25, y: 50, z: 0},
     {x: 12, y: 50, z: 0},
@@ -241,7 +241,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.set(0, 55, 100);
+    camera.position.set(0, 40, 100);
 
     // controls
 

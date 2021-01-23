@@ -9,8 +9,8 @@ body {
 }
 
 .main_logo {
-    width: 1000;
-    height: 300;
+    width: 800;
+    height: 500;
     display: block;
     margin-right: auto;
     margin-left: auto;
@@ -28,7 +28,7 @@ body {
 .Box {
     margin: auto;
     position: relative;
-    top: 300;
+    top: 50;
     width: 500px;
     height: 170;
     text-align: center;

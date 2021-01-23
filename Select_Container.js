@@ -6,7 +6,7 @@ GoBtn.addEventListener('click', () => {
     
 })
 
-document.querySelector('#Add4').addEventListener('click', addToList);
+// document.querySelector('#Add4').addEventListener('click', addToList);
     
         
 
@@ -26,3 +26,24 @@ document.querySelector('#berechnen').addEventListener('click', berechne_Volumen)
 */
 
 const div = document.querySelector('box2')
+
+const tenFt = document.querySelector('#tenFt')
+
+tenFt.addEventListener('click', () => {
+    document.getElementById('tenFt').style.background = "rgba(85, 145, 197, 1)"
+
+})
+
+const twentyFt = document.querySelector('#twentyFt')
+
+twentyFt.addEventListener('click', () => {
+    document.getElementById('twentyFt').style.background = "rgba(85, 145, 197, 1)"
+
+})
+
+const fortyFt = document.querySelector('#fortyFt')
+
+fortyFt.addEventListener('click', () => {
+    document.getElementById('fortyFt').style.background = "rgba(85, 145, 197, 1)"
+
+})
